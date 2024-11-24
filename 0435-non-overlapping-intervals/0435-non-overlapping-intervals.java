@@ -27,13 +27,14 @@ class Solution {
          int len = intervals.length;
          int answer = 0;
          Arrays.sort(intervals,(arr1,arr2)->{
-            return arr1[1] - arr2[1];
+            return arr1[0] - arr2[0];
          });
         int endpoint = intervals[0][1];
         
          for(int i = 1; i < len; i++){
             if(endpoint > intervals[i][0]){
                 answer++;
+                endpoint = Math.min(endpoint, intervals[i][1]);
             }
             else{
                 endpoint = intervals[i][1];

@@ -22,18 +22,18 @@ class Solution {
         }
 
          */
+         //겹친다는 것은 끝지점으로 기준으로 다른 시작점이 끝지점보다 작은 것을 의미한다. 즉 끝지점을 기준으로 오름차순 정렬했을 때, 그 다음에 오는 입력 값이 항상 현재 끝지점보다 크므로 현재 끝지점이 가장 작은 끝지점을 의미한다.
 
          int len = intervals.length;
          int answer = 0;
          Arrays.sort(intervals,(arr1,arr2)->{
-            return arr1[0] - arr2[0];
+            return arr1[1] - arr2[1];
          });
         int endpoint = intervals[0][1];
         
          for(int i = 1; i < len; i++){
             if(endpoint > intervals[i][0]){
                 answer++;
-                endpoint = Math.min(endpoint, intervals[i][1]);
             }
             else{
                 endpoint = intervals[i][1];

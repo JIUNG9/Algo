@@ -13,25 +13,27 @@
  *     }
  * }
  */
-class Solution {
-    private int answer = 0;
+public class Solution {
+    private int ans = 0; // Variable to keep count of good nodes
+
+    // Public method that starts the depth-first search and returns the number of good nodes
     public int goodNodes(TreeNode root) {
-        //현재 노드에서 모든 것을 탐색하고(최단 거리가 아니라서 -> DFS 사용 모든 것을 탐색) 이때, 현재 노드보다, 같거나 큰 노드로 이동했다면 정답을 하나 증가시키고, 해당 정답 값을 반환한다.
-        //root to X -> there are no nodes with the value greater than X
-        dfs(root,root.val);
-        return answer;
+        dfsHelper(root, Integer.MIN_VALUE);
+        return ans;
     }
 
-    public void dfs(TreeNode crnt, int biggest){
-        if(crnt == null) return;
-        if(biggest <= crnt.val) {
-            answer++;
-            biggest = crnt.val;
+    // Helper method that performs a depth-first search on the tree
+    private void dfsHelper(TreeNode node, int maxSoFar) {
+        if (node == null) {
+            return; // Base case: if the node is null, return
         }
-
-        dfs(crnt.left, biggest);
-        dfs(crnt.right, biggest);
+        if (maxSoFar <= node.val) {
+            // If the current value is greater than or equal to the maximum value so far,
+            // it is a good node, so increment the counter and update the maximum value
+            ans++;
+            maxSoFar = node.val;
+        }
+        dfsHelper(node.left, maxSoFar); // Recursively call helper for left subtree
+        dfsHelper(node.right, maxSoFar); // Recursively call helper for right subtree
     }
-
-
 }

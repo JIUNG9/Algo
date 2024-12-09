@@ -18,14 +18,9 @@ class Solution {
         findHelper(false, list2, rootCache2, q.val);
 
         for(TreeNode node : list1){
-            System.out.println("node1.val: " + node.val);
             if(list2.contains(node)) return node;
         }
         
-        // for(TreeNode node : list2){
-        //     System.out.println("node2.val: " + node.val);
-        //     // if(list2.contains(node)) return node;
-        // }
         return null;
         
     }

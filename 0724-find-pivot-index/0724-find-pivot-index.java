@@ -1,28 +1,20 @@
 class Solution {
     public int pivotIndex(int[] nums) {
+        int answer = -1;
         int len = nums.length;
-        int[] dpAsc =  new int[len];
-        int[] dpDesc =  new int[len];
-
-        for(int i = 0; i < len; i++){
-            if(i==0){
-                dpAsc[0] = nums[i];
-                dpDesc[len-1] = nums[len-1];
-                continue;
-            }
-            dpAsc[i]+=(dpAsc[i-1] + nums[i]);
-            dpDesc[len-i-1]+=(dpDesc[len-i] + nums[len-i-1]);
+        int[] a = new int[len];
+        int[] b = new int[len];
+        a[0] = nums[0];
+        b[len-1] = nums[len-1];
+        System.out.println("a[0]: "+ a[0]);
+        System.out.println("b[len-1]: "+ b[len-1]);
+        for(int i = 1; i < len; i++){
+            a[i] = nums[i] + a[i-1];
+            b[len-i-1] = nums[len - i - 1] + b[len - i];
         }
-
-        for(int i = 0; i < len; i++){
-            if(dpAsc[i]==dpDesc[i]) return i;
+        for(int j = 0; j < len; j++){
+            if(a[j] == b[j]) return j;
         }
-        return -1;
-
- 
+        return answer;
     }
-
-
-
-
 }

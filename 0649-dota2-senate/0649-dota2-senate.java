@@ -1,31 +1,28 @@
 class Solution {
-    public String predictPartyVictory(String senate) {
-        Queue<Character> banRight = new LinkedList<>();
-        Queue<Character> alive = new LinkedList<>();
-        
-        while(banRight.size() <= 0){
-            for(char c : senate.toCharArray()){
-                if(!banRight.isEmpty() && banRight.peek()!=c){
-                    banRight.poll();
-                }
-                else{
-                    banRight.add(c);
-                    alive.add(c);
-                }
-                }
-                StringBuilder sb = new StringBuilder();
-                while(!alive.isEmpty()){
-                    if(!banRight.isEmpty() && banRight.peek()!=alive.peek()){
-                        alive.poll();
-                        banRight.poll();
-                    }
-                    else{
-                        sb.append(String.valueOf(alive.poll()));
-                    }
-                }
-                senate = sb.toString();
-
+public:
+    string predictPartyVictory(string senate) {
+        queue<int> rad, dir;
+        int n = senate.length();
+        // Add all senators to respect queue with index
+        for (int i = 0; i < n; i++){
+            if (senate[i] == 'R'){
+                rad.push(i);
+            }
+            else {
+                dir.push(i);
+            }
         }
-        return banRight.poll().equals('D') ? "Dire" : "Radiant";
+        // Use increasing n to keep track of position
+        while (!rad.empty() && !dir.empty()){
+            // Only "winner" stays in their queue
+            if (rad.front() < dir.front()){
+                rad.push(n++);
+            }
+            else {
+                dir.push(n++);
+            }
+            rad.pop(), dir.pop();
+        }
+        return (rad.empty()) ? ("Dire") : ("Radiant");
     }
-}
+};

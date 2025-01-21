@@ -24,7 +24,6 @@ class Solution {
                     }
                 }
                 senate = sb.toString();
-                System.out.println("senate: " + senate);
 
         }
         return banRight.poll().equals('D') ? "Dire" : "Radiant";

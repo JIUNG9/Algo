@@ -1,9 +1,7 @@
 class Solution {
-    private int[][] move = {{1,0},{0,1}};
-    private int answer = 0;
     public int uniquePaths(int m, int n) {
         int[][] dp = new int[m][n];
-        for(int i = 0; i < m; i++){
+        for(int i =0; i < m; i++){
             dp[i][0] = 1;
         }
         for(int j = 0; j < n; j++){
@@ -16,7 +14,5 @@ class Solution {
             }
         }
         return dp[m-1][n-1];
-
-
     }
 }

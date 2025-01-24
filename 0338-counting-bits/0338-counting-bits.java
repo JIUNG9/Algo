@@ -1,13 +1,15 @@
 class Solution {
-    public int[] countBits(int num) {
-    int result[] = new int[num + 1];
-    int offset = 1;
-    for (int index = 1; index < num + 1; ++index){
-        if (offset * 2 == index){
-            offset *= 2;
+    int num = 1;
+    public int[] countBits(int n) {
+        int[] dp = new int[n+1];
+        dp[0] = 0;
+        if(n != 0) dp[1] = 1;
+        for(int i = 2; i <= n; i++){
+            if(i == num * 2) {dp[i] = 1; num*=2;}
+            else{
+                dp[i] = dp[i-num] + 1;
+            }
         }
-        result[index] = result[index - offset] + 1;
+        return dp;
     }
-    return result;
-}
 }

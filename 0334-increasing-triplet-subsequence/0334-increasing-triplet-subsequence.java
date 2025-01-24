@@ -11,7 +11,7 @@ class Solution {
                 a = num;
             } else if (num <= b) {
                 b = num;
-            } else {
+            } else if(num > a && num > b){
                 return true;
             }
         }

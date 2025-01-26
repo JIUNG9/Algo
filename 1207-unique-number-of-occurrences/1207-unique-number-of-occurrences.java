@@ -1,29 +1,14 @@
 class Solution {
     public boolean uniqueOccurrences(int[] arr) {
-
-
-        if(arr.length == 2 && arr[0] != arr[1]) return false;
-
-        int[] freq = new int[1001];
-        Arrays.sort(arr);
-        int idx = 1;
-
-        while(idx < arr.length){
-            int count = 1;
-            while(idx < arr.length && arr[idx-1] == arr[idx]){
-                idx++;
-                count++;
-            }
-            freq[count]++;
-            if(freq[count]!=1) return false;
-            idx++;
+        int[] freq = new int[2001];
+        for(Integer i : arr)
+        {
+            freq[i+1000]++;
         }
-        
+        Arrays.sort(freq);
+        for(int i = 1; i < freq.length; i++){
+            if(freq[i]!=0 && freq[i]==freq[i-1]) return false;
+        }
         return true;
-     
-
-
-        }
-            
-
     }
+}

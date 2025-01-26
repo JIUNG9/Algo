@@ -20,9 +20,9 @@ class Solution {
             while(right < k){
                 if(arr[s.charAt(right++) - 97] == 1) count++;
             }
-            
-            answer = Math.max(count, answer);
 
+            answer = Math.max(count, answer);
+            if(right == s.length()) break;
             if(arr[s.charAt(left++) - 97] == 1) count--;
             if(arr[s.charAt(right++) - 97] == 1) count++;
 

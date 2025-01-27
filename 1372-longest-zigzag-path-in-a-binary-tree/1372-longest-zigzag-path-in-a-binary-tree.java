@@ -14,50 +14,24 @@
  * }
  */
 class Solution {
+    private int answer = 0;
     public int longestZigZag(TreeNode root) {
-        int answer= 0;
-        Queue<Node> q = new LinkedList<>();
-        if(root.left !=null) q.add(new Node(Dir.left,1,root.left));
-        if(root.right !=null)  q.add(new Node(Dir.right,1, root.right));
-
-        while(!q.isEmpty()){
-            Node n = q.poll();
-            if(n.treeNode!=null){
-                if(n.d.equals(Dir.left)){
-                    if(n.treeNode.right !=null) q.offer(new Node(Dir.right,n.cnt+1,n.treeNode.right));
-                    if(n.treeNode.left !=null) q.offer(new Node(Dir.left,1,n.treeNode.left));
-                } 
-                else {
-                    if(n.treeNode.left !=null) q.offer(new Node(Dir.left,n.cnt+1,n.treeNode.left));
-                    if(n.treeNode.right !=null) q.offer(new Node(Dir.right,1,n.treeNode.right));
-  
-                }
-                answer = Math.max(n.cnt, answer);
-            }
-
-            }
-        
+        dfs(root.left, Dir.left, 1);
+        dfs(root.right, Dir.right, 1);
         return answer;
-        
     }
-    class Node{
-        private Dir d;
-        private int cnt;
-        private TreeNode treeNode;
-
-        public Node(Dir d, int cnt, TreeNode treeNode){
-            this.cnt = cnt;
-            this.d = d;
-            this.treeNode = treeNode;
+    public void dfs(TreeNode node, Dir dir, int depth){
+        if(node == null) { answer = Math.max(depth - 1, answer); return;}
+        if(dir.equals(Dir.left)){
+            dfs(node.right, Dir.right, depth +1);
+            dfs(node.left, Dir.left, 1);
         }
-        @Override
-        public String toString(){
-            return d +", " +  cnt +", " + treeNode;
+        else{
+            dfs(node.left, Dir.left, depth +1);
+            dfs(node.right, Dir.right, 1);
         }
-
     }
-
-    enum Dir{
-        left,right;
-    }
+}
+enum Dir{
+    left,right;
 }

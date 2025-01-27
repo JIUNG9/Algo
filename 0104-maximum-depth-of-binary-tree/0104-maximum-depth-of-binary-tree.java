@@ -14,14 +14,14 @@
  * }
  */
 class Solution {
-    private int max = 0;
+    private int answer = 0;
     public int maxDepth(TreeNode root) {
-        maxDepthHelper(root,0);
-        return max;
+        dfs(root, 0);
+        return answer;
     }
-    public void maxDepthHelper(TreeNode node, int depth){
-        if(node == null) {max = Math.max(depth,max); return;}
-        maxDepthHelper(node.left, depth+1);
-        maxDepthHelper(node.right, depth+1);
+    public void dfs(TreeNode node, int depth){
+        if(node == null) {answer =Math.max(depth, answer); return;}
+        dfs(node.left, depth+1);
+        dfs(node.right, depth+1);
     }
 }

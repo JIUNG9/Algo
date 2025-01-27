@@ -1,17 +1,17 @@
 class Solution {
     public void moveZeroes(int[] nums) {
-        Queue<Integer> q1 = new LinkedList<>();
-        Queue<Integer> q2 = new LinkedList<>();
-        int idx = 0;
-        for(int i = 0; i < nums.length; i++){
-            if(nums[i]==0)q2.add(0);
-            else q1.add(nums[i]);
+      for(int i = 0; i < nums.length; i++)
+      {
+        if(nums[i] == 0){
+            int idx = i;
+            while(idx < nums.length && nums[idx]==0){
+                idx++;
+            }
+            if(idx == nums.length) break;
+            int temp = nums[idx];
+            nums[idx] = 0;
+            nums[i] = temp;
         }
-        while(!q1.isEmpty()){
-            nums[idx++] = q1.poll();
-        }
-        while(!q2.isEmpty()){
-            nums[idx++] = q2.poll();
-        }
+      }
     }
 }

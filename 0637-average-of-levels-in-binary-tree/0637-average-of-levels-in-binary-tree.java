@@ -37,9 +37,9 @@ class Solution {
             int count = l.size();
             double num = 0;
             for(Integer i : l){
-                num+=((double)i/count);
+                num+=i;
             }
-            answer.add(num);
+            answer.add(num/count);
         }
 
         return answer;

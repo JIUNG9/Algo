@@ -22,6 +22,7 @@ class Solution {
         ListNode secondPointerHeader = null;
         int totalNum = getCount(copy, k);
         k = k % totalNum;
+
         if(k == 0) return head;
 
         for(int i = 0; i < totalNum - k ; i++){

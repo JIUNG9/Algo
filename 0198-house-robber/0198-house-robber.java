@@ -9,13 +9,10 @@ class Solution {
         dp[1] = nums[1];
         dp[2] = nums[2] + dp[0];
 
-        int answer = Math.max(Math.max(dp[0],dp[1]),dp[2]);
-
         for(int i = 3; i < nums.length; i++){
             dp[i] = nums[i] + Math.max(dp[i-3], dp[i-2]);
-            answer = Math.max(dp[i], answer);
         }
-        return answer;
+        return Math.max(dp[dp.length-1],dp[dp.length-2]);
 
 
 
